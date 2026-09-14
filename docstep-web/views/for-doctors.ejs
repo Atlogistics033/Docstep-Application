@@ -1,0 +1,68 @@
+<!-- FOR DOCTORS -->
+<section class="hero-gradient">
+  <div class="max-w-7xl mx-auto px-4 pt-16 pb-20 grid lg:grid-cols-2 gap-12 items-center">
+    <div>
+      <div class="brand-pill mb-4">For Doctors</div>
+      <h1 class="font-display font-extrabold text-4xl md:text-5xl text-navy-800 leading-tight">A platform built around <span class="text-teal-600">your reality.</span></h1>
+      <p class="text-lg text-slate-600 mt-5 leading-relaxed">Whether you took a break for marriage, motherhood, relocation, or burnout — DocStep helps you re-enter clinical practice on flexible, dignified terms.</p>
+      <div class="flex gap-3 mt-7">
+        <a href="/register?role=doctor" class="btn btn-primary">Create your free profile</a>
+        <a href="/opportunities" class="btn btn-outline">Browse jobs</a>
+      </div>
+    </div>
+    <div class="card card-pad bg-white">
+      <h3 class="font-display font-bold text-lg text-navy-800 mb-4">In 4 simple steps</h3>
+      <ol class="space-y-4">
+        <% const steps = [
+          ['Sign up & verify','Create your free account, upload your PMDC certificate and medical degrees.'],
+          ['Build your CV','Use our guided builder — designed for doctors with career gaps.'],
+          ['Match & apply','Get matched to flexible, hybrid, and remote roles from verified employers.'],
+          ['Practice on your terms','Set your availability, conduct telemedicine, and grow your career.']
+        ]; %>
+        <% steps.forEach((s,i) => { %>
+          <li class="flex gap-4">
+            <div class="w-9 h-9 rounded-full bg-teal-600 text-white font-bold flex items-center justify-center shrink-0"><%= i+1 %></div>
+            <div>
+              <div class="font-semibold text-navy-800"><%= s[0] %></div>
+              <div class="text-sm text-slate-600"><%= s[1] %></div>
+            </div>
+          </li>
+        <% }) %>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="max-w-7xl mx-auto px-4 py-20">
+  <div class="text-center mb-12">
+    <div class="brand-pill mb-3">What you get</div>
+    <h2 class="font-display font-bold text-3xl text-navy-800">Built for returning, balancing, and growing</h2>
+  </div>
+  <div class="grid md:grid-cols-3 gap-5">
+    <% const benefits = [
+      ['Verified PMDC profile','We verify your license and qualifications so employers can trust your profile instantly.'],
+      ['Guided CV builder','Pre-built sections for career gaps, returnship programs, and refresher training.'],
+      ['Flexible jobs only','Remote, hybrid, part-time, and returnship roles — never the rigid 9–9 grind.'],
+      ['Free training courses','Refresher courses on telemedicine, CBT, ultrasound, and licensing.'],
+      ['Private community','Discuss returning to practice with peers who genuinely understand.'],
+      ['Interview & messaging','Direct messages, interview scheduling, and notifications — all in one dashboard.']
+    ]; %>
+    <% benefits.forEach(b => { %>
+      <div class="card card-pad">
+        <div class="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center mb-3">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <div class="font-semibold text-navy-800 mb-1"><%= b[0] %></div>
+        <div class="text-sm text-slate-600"><%= b[1] %></div>
+      </div>
+    <% }) %>
+  </div>
+</section>
+
+<section class="section-teal py-20">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="font-display font-extrabold text-3xl md:text-4xl">Your medical journey doesn't end here.</h2>
+    <p class="text-teal-50 mt-4 max-w-2xl mx-auto">Join the women rebuilding their careers — one consultation, one course, one connection at a time.</p>
+    <a href="/register?role=doctor" class="btn bg-white text-teal-700 hover:bg-teal-50 mt-7">Get started — it's free</a>
+  </div>
+</section>

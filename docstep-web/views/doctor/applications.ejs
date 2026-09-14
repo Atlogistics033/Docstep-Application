@@ -1,0 +1,44 @@
+<section class="max-w-7xl mx-auto px-4 py-10">
+  <div class="grid lg:grid-cols-[260px_1fr] gap-6">
+    <%- include('../partials/doctor-side') %>
+
+    <div>
+      <h1 class="font-display font-extrabold text-3xl text-navy-800 mb-2">My Applications</h1>
+      <p class="text-slate-600 mb-6">Track every job you've applied to and its current status.</p>
+
+      <div class="card overflow-hidden">
+        <% if (apps.length === 0) { %>
+          <div class="p-8 text-center text-slate-500">
+            You haven't applied to any roles yet. <a href="/opportunities" class="text-teal-700 font-semibold">Browse jobs →</a>
+          </div>
+        <% } else { %>
+          <table class="w-full text-sm">
+            <thead class="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider">
+              <tr>
+                <th class="p-4 text-left">Role</th>
+                <th class="p-4 text-left">Organization</th>
+                <th class="p-4 text-left">Mode</th>
+                <th class="p-4 text-left">Applied</th>
+                <th class="p-4 text-left">Status</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <% apps.forEach(a => { %>
+                <tr>
+                  <td class="p-4">
+                    <a href="/jobs/<%= a.job_id %>" class="font-semibold text-navy-800 hover:text-teal-700"><%= a.title %></a>
+                    <div class="text-xs text-slate-500"><%= a.city %> • <%= a.salary_range %></div>
+                  </td>
+                  <td class="p-4 text-slate-700"><%= a.organization_name %></td>
+                  <td class="p-4"><span class="badge badge-teal"><%= a.mode %></span></td>
+                  <td class="p-4 text-slate-500 text-xs"><%= new Date(a.applied_at).toDateString() %></td>
+                  <td class="p-4"><span class="badge <%= a.status==='shortlisted'||a.status==='interviewed'?'badge-teal':a.status==='hired'?'badge-green':a.status==='rejected'?'badge-red':'badge-gray' %>"><%= a.status %></span></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</section>

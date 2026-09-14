@@ -1,0 +1,168 @@
+<section class="max-w-7xl mx-auto px-4 py-10">
+  <div class="grid lg:grid-cols-[260px_1fr] gap-6 text-left">
+    <%- include('../partials/doctor-side') %>
+
+    <div>
+      <h1 class="font-display font-extrabold text-3xl text-navy-800 mb-2">My Appointments</h1>
+      <p class="text-slate-600 mb-6">Track and manage your scheduled patient consultation appointments.</p>
+
+      <!-- Day Filter Controls -->
+      <div class="flex flex-wrap items-center gap-2 mb-6 bg-white p-3 rounded-2xl border border-slate-200 shadow-sm">
+        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider px-2">Day Filter:</span>
+        <a href="/doctor/appointments?filter=all" class="btn text-xs py-1.5 px-3 rounded-lg <%= filter === 'all' ? 'btn-primary' : 'btn-outline' %>">All Appointments</a>
+        <a href="/doctor/appointments?filter=today" class="btn text-xs py-1.5 px-3 rounded-lg <%= filter === 'today' ? 'btn-primary' : 'btn-outline' %>">Today</a>
+        <a href="/doctor/appointments?filter=tomorrow" class="btn text-xs py-1.5 px-3 rounded-lg <%= filter === 'tomorrow' ? 'btn-primary' : 'btn-outline' %>">Tomorrow</a>
+        
+        <form method="get" action="/doctor/appointments" class="inline-flex items-center gap-2 md:ml-auto">
+          <input type="hidden" name="filter" value="specific" />
+          <span class="text-xs text-slate-500 font-semibold">Specific Day:</span>
+          <input type="date" name="dateVal" value="<%= dateVal %>" onchange="this.form.submit()" class="input text-xs py-1.5 px-2 border border-slate-200 rounded-lg" />
+        </form>
+      </div>
+
+      <div class="card overflow-hidden">
+        <% if (appointments.length === 0) { %>
+          <div class="p-12 text-center text-slate-500">
+            No scheduled appointments found for this selection.
+          </div>
+        <% } else { %>
+          <table class="w-full text-sm">
+            <thead class="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider">
+              <tr>
+                <th class="p-4 text-left">Patient Name</th>
+                <th class="p-4 text-left">Date</th>
+                <th class="p-4 text-left">Day</th>
+                <th class="p-4 text-left">Time Slot</th>
+                <th class="p-4 text-left">Specialty</th>
+                <th class="p-4 text-left">Status</th>
+                <th class="p-4 text-left">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <% appointments.forEach(a => { %>
+                <tr class="hover:bg-slate-50/50 transition-colors">
+                  <td class="p-4 font-semibold text-navy-800"><%= a.patient_name %></td>
+                  <td class="p-4 text-slate-700 font-medium"><%= new Date(a.date).toLocaleDateString() %></td>
+                  <td class="p-4"><span class="badge badge-lavender"><%= a.day %></span></td>
+                  <td class="p-4 text-slate-600 font-semibold"><%= a.time_slot %></td>
+                  <td class="p-4 text-slate-500 text-xs"><%= a.primary_specialty %></td>
+                  <td class="p-4">
+                    <span class="badge badge-green">Scheduled</span>
+                  </td>
+                  <td class="p-4">
+                    <button 
+                      type="button" 
+                      class="cancel-trigger bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 text-xs font-semibold px-3 py-1.5 rounded-xl transition-colors shrink-0"
+                      data-id="<%= a.id %>"
+                      data-name="<%= a.patient_name %>"
+                      data-date="<%= new Date(a.date).toLocaleDateString() %> (<%= a.day %>) at <%= a.time_slot %>"
+                    >
+                      Cancel
+                    </button>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        <% } %>
+      </div>
+      </div>
+      <!-- Premium Cancel Confirmation Modal -->
+      <div id="cancel-confirm-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-100 transform scale-95 transition-all duration-300">
+          <div class="flex items-center justify-center w-12 h-12 mx-auto bg-red-100 text-red-600 rounded-full mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+            </svg>
+          </div>
+          <h3 class="text-center font-display font-bold text-lg text-navy-800">Cancel Appointment?</h3>
+          <p class="text-center text-sm text-slate-500 mt-2 mb-6 leading-relaxed">
+            Are you sure you want to cancel this appointment with <strong id="cancel-modal-name" class="text-navy-800"></strong> on <span id="cancel-modal-date" class="font-semibold text-slate-700"></span>? This action cannot be undone.
+          </p>
+          <div class="flex gap-3">
+            <button
+              type="button"
+              id="cancel-confirm-btn"
+              class="flex-1 bg-red-600 hover:bg-red-700 text-white font-semibold py-2.5 rounded-xl transition-colors text-sm"
+            >
+              Yes, Cancel
+            </button>
+            <button
+              type="button"
+              id="cancel-abort-btn"
+              class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-2.5 rounded-xl transition-colors text-sm border border-slate-200"
+            >
+              No, Keep It
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const cancelConfirmModal = document.getElementById('cancel-confirm-modal');
+        const cancelModalName = document.getElementById('cancel-modal-name');
+        const cancelModalDate = document.getElementById('cancel-modal-date');
+        const cancelConfirmBtn = document.getElementById('cancel-confirm-btn');
+        const cancelAbortBtn = document.getElementById('cancel-abort-btn');
+        
+        let appointmentToCancelId = null;
+
+        document.querySelectorAll('.cancel-trigger').forEach(btn => {
+          btn.addEventListener('click', () => {
+            appointmentToCancelId = btn.getAttribute('data-id');
+            cancelModalName.textContent = btn.getAttribute('data-name');
+            cancelModalDate.textContent = btn.getAttribute('data-date');
+            
+            cancelConfirmModal.classList.remove('hidden');
+            cancelConfirmModal.offsetHeight; // force reflow
+            cancelConfirmModal.classList.remove('opacity-0');
+            cancelConfirmModal.classList.add('opacity-100');
+            cancelConfirmModal.firstElementChild.classList.remove('scale-95');
+            cancelConfirmModal.firstElementChild.classList.add('scale-100');
+          });
+        });
+
+        function closeModal() {
+          cancelConfirmModal.classList.remove('opacity-100');
+          cancelConfirmModal.classList.add('opacity-0');
+          cancelConfirmModal.firstElementChild.classList.remove('scale-100');
+          cancelConfirmModal.firstElementChild.classList.add('scale-95');
+          setTimeout(() => {
+            cancelConfirmModal.classList.add('hidden');
+            appointmentToCancelId = null;
+          }, 300);
+        }
+
+        cancelAbortBtn.addEventListener('click', closeModal);
+
+        cancelConfirmBtn.addEventListener('click', async () => {
+          if (!appointmentToCancelId) return;
+          
+          cancelConfirmBtn.disabled = true;
+          cancelConfirmBtn.textContent = 'Cancelling...';
+          
+          try {
+            const res = await fetch(`/api/public/appointments/${appointmentToCancelId}/cancel`, {
+              method: 'POST'
+            });
+            const data = await res.json();
+            if (data.success) {
+              window.location.reload();
+            } else {
+              alert(data.error || 'Failed to cancel appointment.');
+              cancelConfirmBtn.disabled = false;
+              cancelConfirmBtn.textContent = 'Yes, Cancel';
+            }
+          } catch (err) {
+            console.error(err);
+            alert('Error cancelling appointment.');
+            cancelConfirmBtn.disabled = false;
+            cancelConfirmBtn.textContent = 'Yes, Cancel';
+          }
+        });
+      });
+      </script>
+    </div>
+  </div>
+</section>

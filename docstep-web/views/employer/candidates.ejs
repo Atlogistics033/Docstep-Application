@@ -1,0 +1,50 @@
+<section class="max-w-7xl mx-auto px-4 py-10">
+  <div class="grid lg:grid-cols-[260px_1fr] gap-6">
+    <%- include('../partials/employer-side') %>
+
+    <div>
+      <h1 class="font-display font-extrabold text-3xl text-navy-800 mb-2">Search Candidates</h1>
+      <p class="text-slate-600 mb-6">Browse PMDC-verified women doctors open to flexible work.</p>
+
+      <form method="get" class="card card-pad mb-6 grid md:grid-cols-4 gap-3">
+        <input name="q" value="<%= q %>" class="input md:col-span-2" placeholder="Search by name or bio..." />
+        <select name="specialty" class="select">
+          <option value="">All specialties</option>
+          <% specialties.forEach(s => { %><option <%= selSpec===s?'selected':'' %>><%= s %></option><% }) %>
+        </select>
+        <select name="city" class="select">
+          <option value="">All cities</option>
+          <% cities.forEach(c => { %><option <%= selCity===c?'selected':'' %>><%= c %></option><% }) %>
+        </select>
+        <div class="md:col-span-4 flex justify-end gap-2">
+          <a href="/employer/candidates" class="btn btn-ghost">Clear</a>
+          <button class="btn btn-primary">Filter</button>
+        </div>
+      </form>
+
+      <div class="text-sm text-slate-500 mb-3"><span class="font-semibold text-navy-800"><%= candidates.length %></span> candidates</div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <% candidates.forEach(c => { %>
+          <a href="/employer/candidates/<%= c.id %>" class="card card-pad block">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-teal-400 to-lavender-300 flex items-center justify-center text-white font-bold">
+                <%= c.full_name.split(' ').map(p=>p[0]).slice(0,2).join('') %>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-semibold text-navy-800 truncate"><%= c.full_name %></div>
+                <div class="text-xs text-slate-500"><%= c.specialty %> • <%= c.experience_years %> yrs • <%= c.city %></div>
+              </div>
+              <% if (c.pmdc_verified) { %><span class="badge badge-green">PMDC ✓</span><% } %>
+            </div>
+            <p class="text-sm text-slate-600 line-clamp-2 mt-3"><%= c.bio || 'No bio yet.' %></p>
+            <div class="flex flex-wrap gap-2 mt-3">
+              <span class="badge badge-teal"><%= c.availability %></span>
+              <% if (c.open_to_remote) { %><span class="badge badge-lavender">Open to remote</span><% } %>
+            </div>
+          </a>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</section>

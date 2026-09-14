@@ -1,0 +1,60 @@
+<!-- CONTACT -->
+<section class="hero-gradient">
+  <div class="max-w-6xl mx-auto px-4 pt-14 pb-10">
+    <div class="brand-pill mb-3">Contact</div>
+    <h1 class="font-display font-extrabold text-3xl md:text-5xl text-navy-800">Let's talk</h1>
+    <p class="text-slate-600 mt-3 max-w-2xl">Questions about returning to practice, hiring, partnerships, or our FYP? We'd love to hear from you.</p>
+  </div>
+</section>
+
+<section class="max-w-6xl mx-auto px-4 py-12 grid lg:grid-cols-3 gap-8">
+  <div class="lg:col-span-2 card card-pad">
+    <% if (submitted) { %>
+      <div class="text-center py-8">
+        <div class="w-16 h-16 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        </div>
+        <h2 class="font-display font-bold text-2xl text-navy-800">Thanks for reaching out!</h2>
+        <p class="text-slate-600 mt-2">We'll get back to you within 1–2 business days.</p>
+        <a href="/" class="btn btn-outline mt-6">Back to home</a>
+      </div>
+    <% } else { %>
+      <h2 class="font-display font-bold text-xl text-navy-800 mb-4">Send us a message</h2>
+      <form method="post" action="/contact" class="space-y-4">
+        <div class="grid md:grid-cols-2 gap-3">
+          <div><label class="label">Full name</label><input name="name" required class="input" /></div>
+          <div><label class="label">Email</label><input type="email" name="email" required class="input" /></div>
+        </div>
+        <div><label class="label">Subject</label><input name="subject" class="input" placeholder="e.g. Partnership enquiry" /></div>
+        <div><label class="label">Message</label><textarea name="message" required rows="5" class="textarea"></textarea></div>
+        <button class="btn btn-primary">Send message</button>
+      </form>
+    <% } %>
+  </div>
+
+  <aside class="space-y-4">
+    <div class="card card-pad">
+      <h3 class="font-semibold text-navy-800 mb-3">Reach the team</h3>
+      <div class="space-y-3 text-sm">
+        <div>
+          <div class="text-xs uppercase tracking-wider text-slate-500">Email</div>
+          <div class="text-navy-800 font-semibold">hello@docstep.pk</div>
+        </div>
+        <div>
+          <div class="text-xs uppercase tracking-wider text-slate-500">Phone</div>
+          <div class="text-navy-800 font-semibold">+92-21-XXXX-XXXX</div>
+        </div>
+        <div>
+          <div class="text-xs uppercase tracking-wider text-slate-500">University</div>
+          <div class="text-navy-800 font-semibold">Sir Syed University of Engineering & Technology</div>
+          <div class="text-xs text-slate-500">University Road, Karachi 75300</div>
+        </div>
+      </div>
+    </div>
+    <div class="card card-pad bg-gradient-to-br from-lavender-50 to-teal-50">
+      <h3 class="font-semibold text-navy-800 mb-2">FYP supervisor</h3>
+      <div class="font-display font-bold text-lg text-navy-800">Dr. Waleej Haider</div>
+      <div class="text-sm text-slate-600">Associate Professor, CS & IT</div>
+    </div>
+  </aside>
+</section>

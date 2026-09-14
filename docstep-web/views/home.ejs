@@ -1,0 +1,188 @@
+<!-- HOME -->
+<section class="hero-gradient relative overflow-hidden" style="margin-top: -73px;">
+  <!-- Background Image Layer -->
+  <div class="absolute inset-0 z-0">
+    <img src="/images/hero_doctors.jpg" alt="Medical Team" class="w-full h-full object-cover object-[right_center] lg:object-[80%_center]" />
+  </div>
+
+  <!-- Gradient Overlay Layer -->
+  <!-- On desktop: fades light teal from left to right to create clean space for text -->
+  <div class="absolute inset-y-0 left-0 w-3/5 z-10 bg-gradient-to-r from-[#E0F4F3] via-[#E0F4F3]/90 to-transparent pointer-events-none hidden lg:block"></div>
+  <!-- On desktop: soft fade at the bottom to transition to the next section -->
+  <div class="absolute inset-x-0 bottom-0 z-10 h-24 bg-gradient-to-t from-[#F4F8FA] to-transparent pointer-events-none hidden lg:block"></div>
+  <!-- On mobile: solid light teal semi-transparent background to ensure text readability -->
+  <div class="absolute inset-0 z-10 bg-[#E0F4F3]/92 pointer-events-none lg:hidden"></div>
+
+  <!-- Content Layer -->
+  <div class="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-12 items-center relative z-20">
+    <div class="pt-24 lg:pt-36 pb-20 flex flex-col justify-center">
+      <div class="brand-pill bg-teal-50 text-teal-800 border border-teal-100 px-4 py-1.5 rounded-full inline-flex items-center gap-2 mb-6 text-sm font-semibold self-start">
+        <svg class="w-4 h-4 text-teal-600 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        Empowering Women in Healthcare
+      </div>
+      <h1 class="font-display font-extrabold text-4xl md:text-5xl lg:text-6xl text-navy-800 leading-tight">
+        Your medical journey <br class="hidden lg:block" />
+        doesn't end after a <br class="hidden lg:block" />
+        <span class="bg-gradient-to-r from-teal-600 to-teal-800 bg-clip-text text-transparent">career break.</span>
+      </h1>
+      <p class="text-lg text-slate-600 mt-6 leading-relaxed max-w-xl">
+        DocStep helps women doctors return to practice through flexible jobs, structured training, mentorship, and verified telemedicine opportunities — on your schedule, on your terms.
+      </p>
+      
+      <div class="flex flex-wrap gap-4 mt-8">
+        <a href="/register?role=doctor" class="btn btn-primary shadow-lg shadow-teal-500/20">
+          I'm a Doctor — Get Started
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </a>
+        <a href="/register?role=employer" class="btn btn-outline border-slate-300 hover:border-teal-500">I'm Hiring Doctors</a>
+      </div>
+
+      <div class="bg-white/80 backdrop-blur-md border border-slate-200/50 rounded-2xl p-4 shadow-xl shadow-navy-800/5 mt-12 max-w-lg grid grid-cols-3 gap-4">
+        <div class="text-center border-r border-slate-100 last:border-0">
+          <div class="stat-num text-2xl lg:text-3xl text-teal-600 font-extrabold"><%= stats.doctors %>+</div>
+          <div class="stat-lab text-xs text-slate-500 font-semibold mt-1">Verified Doctors</div>
+        </div>
+        <div class="text-center border-r border-slate-100 last:border-0">
+          <div class="stat-num text-2xl lg:text-3xl text-teal-600 font-extrabold"><%= stats.jobs %></div>
+          <div class="stat-lab text-xs text-slate-500 font-semibold mt-1">Open Roles</div>
+        </div>
+        <div class="text-center last:border-0">
+          <div class="stat-num text-2xl lg:text-3xl text-teal-600 font-extrabold"><%= stats.employers %>+</div>
+          <div class="stat-lab text-xs text-slate-500 font-semibold mt-1">Hiring Partners</div>
+        </div>
+      </div>
+    </div>
+    <div class="hidden lg:block"></div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="max-w-7xl mx-auto px-4 py-20">
+  <div class="text-center max-w-2xl mx-auto mb-12">
+    <div class="brand-pill mb-3">Who DocStep is for</div>
+    <h2 class="font-display font-bold text-3xl md:text-4xl text-navy-800">Built for every step of your medical journey</h2>
+  </div>
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="card card-pad">
+      <div class="w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center text-teal-600 mb-4">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      </div>
+      <h3 class="font-display font-bold text-xl text-navy-800 mb-2">Women Doctors</h3>
+      <p class="text-slate-600 text-sm leading-relaxed">Returning after a career gap? Seeking remote or flexible roles? Rebuild your confidence with training, mentorship, and verified opportunities.</p>
+      <a href="/for-doctors" class="text-teal-600 font-semibold text-sm mt-4 inline-flex items-center gap-1">For Doctors →</a>
+    </div>
+    <div class="card card-pad">
+      <div class="w-12 h-12 bg-lavender-100 rounded-xl flex items-center justify-center text-lavender-700 mb-4">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11m16-11v11M8 14v3m4-3v3m4-3v3"/></svg>
+      </div>
+      <h3 class="font-display font-bold text-xl text-navy-800 mb-2">Hospitals & Clinics</h3>
+      <p class="text-slate-600 text-sm leading-relaxed">Hire verified women doctors for flexible, hybrid, or remote roles. Build a compassionate team without compromising on quality of care.</p>
+      <a href="/for-employers" class="text-lavender-700 font-semibold text-sm mt-4 inline-flex items-center gap-1">For Employers →</a>
+    </div>
+    <div class="card card-pad">
+      <div class="w-12 h-12 bg-navy-800/10 rounded-xl flex items-center justify-center text-navy-800 mb-4">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+      </div>
+      <h3 class="font-display font-bold text-xl text-navy-800 mb-2">Training Partners & NGOs</h3>
+      <p class="text-slate-600 text-sm leading-relaxed">Training institutes, telehealth companies, and NGOs collaborate with us to deliver returnship programs, courses, and community outreach.</p>
+      <a href="/about" class="text-navy-800 font-semibold text-sm mt-4 inline-flex items-center gap-1">Partner with us →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CORE FEATURES -->
+<section class="section-soft py-20">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <div class="brand-pill mb-3">Core Features</div>
+      <h2 class="font-display font-bold text-3xl md:text-4xl text-navy-800">Everything you need to restart, hire, and grow</h2>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <% const feats = [
+        ['Smart AI Job Matching','Recommend roles by specialty, availability, mode, and career stage.','#8E7AC9'],
+        ['Resume / CV Builder','A guided builder tailored for women returning to clinical practice.','#1F7B79'],
+        ['Mentorship & Community','Peer threads, mentor connects, and supportive returnship circles.','#5C4A98'],
+        ['Telemedicine Integration','Hooks into video tools so consultations can happen securely from home.','#2BA3A0'],
+        ['Notifications & Messaging','Real-time updates on applications, interviews, and replies.','#16243F'],
+      ]; %>
+      <% feats.forEach(f => { %>
+        <div class="card card-pad">
+          <div class="w-10 h-10 rounded-lg mb-4 flex items-center justify-center" style="background:<%= f[2] %>15; color:<%= f[2] %>">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h3 class="font-semibold text-lg text-navy-800 mb-1"><%= f[0] %></h3>
+          <p class="text-sm text-slate-600 leading-relaxed"><%= f[1] %></p>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED OPPORTUNITIES -->
+<section class="max-w-7xl mx-auto px-4 py-20">
+  <div class="mb-8">
+    <div class="brand-pill mb-3">Latest opportunities</div>
+    <h2 class="font-display font-bold text-3xl md:text-4xl text-navy-800">Flexible roles, ready for you</h2>
+  </div>
+  <div class="grid md:grid-cols-2 gap-5">
+    <% featuredJobs.forEach(j => { %>
+      <a href="/jobs/<%= j.id %>" class="card card-pad block">
+        <div class="flex items-start justify-between gap-2 mb-2">
+          <div>
+            <h3 class="font-semibold text-lg text-navy-800"><%= j.title %></h3>
+            <div class="text-sm text-slate-500 mt-0.5"><%= j.organization_name %> • <%= j.city %></div>
+          </div>
+          <span class="badge badge-teal"><%= j.mode %></span>
+        </div>
+        <p class="text-sm text-slate-600 line-clamp-2 mt-2"><%= j.description %></p>
+        <div class="flex items-center justify-between mt-4 pt-4 border-t border-slate-100">
+          <div class="flex gap-2">
+            <span class="badge badge-lavender"><%= j.specialty %></span>
+            <span class="badge badge-navy"><%= j.job_type %></span>
+          </div>
+          <div class="text-sm font-semibold text-teal-700"><%= j.salary_range %></div>
+        </div>
+      </a>
+    <% }) %>
+  </div>
+</section>
+
+<!-- SUCCESS STORIES -->
+<section class="section-lavender py-20">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <div class="brand-pill mb-3">Success stories</div>
+      <h2 class="font-display font-bold text-3xl md:text-4xl text-navy-800">Real doctors. Real returns.</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <% featuredStories.forEach(s => { %>
+        <div class="card card-pad bg-white">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-teal-400 to-lavender-300 flex items-center justify-center text-white font-bold text-lg">
+              <%= s.doctor_name.split(' ').map(p => p[0]).slice(0,2).join('') %>
+            </div>
+            <div>
+              <div class="font-semibold text-navy-800"><%= s.doctor_name %></div>
+              <div class="text-xs text-slate-500"><%= s.specialty %> • <%= s.city %></div>
+            </div>
+          </div>
+          <h3 class="font-display font-bold text-lg text-navy-800 mb-2 leading-snug">"<%= s.headline %>"</h3>
+          <p class="text-sm text-slate-600 line-clamp-4"><%= s.story %></p>
+          <a href="/stories" class="text-teal-700 text-sm font-semibold mt-4 inline-block">Read more →</a>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-teal py-20">
+  <div class="max-w-5xl mx-auto px-4 text-center">
+    <h2 class="font-display font-extrabold text-3xl md:text-5xl">Restart your career. Reshape healthcare.</h2>
+    <p class="text-lg text-teal-50 mt-5 max-w-2xl mx-auto">Join hundreds of women doctors who are practising again — on flexible, supportive, verified terms.</p>
+    <div class="flex flex-wrap gap-3 justify-center mt-8">
+      <a href="/register?role=doctor" class="btn bg-white text-teal-700 hover:bg-teal-50">Create your free doctor profile</a>
+      <a href="/register?role=employer" class="btn btn-lavender">Hire on DocStep</a>
+    </div>
+  </div>
+</section>

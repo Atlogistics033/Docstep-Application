@@ -1,0 +1,77 @@
+<section class="max-w-7xl mx-auto px-4 py-10">
+  <div class="grid lg:grid-cols-[260px_1fr] gap-6">
+    <%- include('../partials/doctor-side') %>
+
+    <div>
+      <h1 class="font-display font-extrabold text-3xl text-navy-800 mb-2">My Profile</h1>
+      <p class="text-slate-600 mb-6">Keep your profile up to date — employers see this first.</p>
+
+      <form method="post" action="/doctor/profile" class="card card-pad space-y-5">
+        <div class="grid md:grid-cols-2 gap-4">
+          <div><label class="label">Full name</label><input name="full_name" value="<%= user.full_name %>" class="input" required /></div>
+          <div><label class="label">Phone</label><input name="phone" class="input" /></div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label class="label">Primary specialty</label>
+            <select name="specialty" class="select">
+              <% ['General Practice','Gynecology','Pediatrics','Psychiatry','Dermatology','Internal Medicine','Cardiology','Other'].forEach(s => { %>
+                <option <%= profile.specialty===s?'selected':'' %>><%= s %></option>
+              <% }) %>
+            </select>
+          </div>
+          <div><label class="label">Years of experience</label><input type="number" min="0" name="experience_years" value="<%= profile.experience_years %>" class="input" /></div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div><label class="label">PMDC number</label><input name="pmdc_number" value="<%= profile.pmdc_number || '' %>" class="input" placeholder="e.g. PMDC-12345" /></div>
+          <div><label class="label">City</label><input name="city" value="<%= profile.city || '' %>" class="input" /></div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label class="label">Clinic / Hospital Name</label>
+            <input name="clinic_name" value="<%= profile.clinic_name || '' %>" class="input" placeholder="e.g. Al-Khidmat Clinic / Aga Khan Hospital" />
+          </div>
+          <div>
+            <label class="label">Clinic Location / Area</label>
+            <select name="clinic_address" class="select">
+              <option value="">Select Location</option>
+              <% ['North Nazimabad','Nazimabad','FB Area','Gulshan-e-Iqbal','Gulistan-e-Johar','PCHS','Saddar','Shah Faisal','Shahrah-e-Faisal','Malir'].forEach(loc => { %>
+                <option value="<%= loc %>" <%= profile.clinic_address===loc?'selected':'' %>><%= loc %></option>
+              <% }) %>
+            </select>
+          </div>
+          <div class="md:col-span-2">
+            <label class="label">Clinic / Hospital Address</label>
+            <input name="clinic_hospital_address" value="<%= profile.clinic_hospital_address || '' %>" class="input" placeholder="e.g. Block H, North Nazimabad, Karachi" />
+          </div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div><label class="label">Languages</label><input name="languages" value="<%= profile.languages || '' %>" class="input" placeholder="Urdu, English, Punjabi" /></div>
+          <div><label class="label">Qualifications</label><input name="qualifications" value="<%= profile.qualifications || '' %>" class="input" placeholder="MBBS, FCPS, MRCOG..." /></div>
+        </div>
+        <div>
+          <label class="label">Short bio</label>
+          <textarea name="bio" rows="4" class="textarea" placeholder="Tell employers about your background and what you're looking for next."><%= profile.bio || '' %></textarea>
+        </div>
+        <div class="grid md:grid-cols-3 gap-4">
+          <div>
+            <label class="label">Availability</label>
+            <select name="availability" class="select">
+              <% ['Flexible','Mornings only','Evenings & Weekends','Weekdays 10am-2pm','Weekday afternoons','Evenings'].forEach(a => { %>
+                <option <%= profile.availability===a?'selected':'' %>><%= a %></option>
+              <% }) %>
+            </select>
+          </div>
+          <div><label class="label">Hourly rate (PKR)</label><input type="number" name="hourly_rate" value="<%= profile.hourly_rate %>" class="input" /></div>
+          <div class="flex items-end gap-2">
+            <label class="inline-flex items-center gap-2 mt-7">
+              <input type="checkbox" name="open_to_remote" <%= profile.open_to_remote?'checked':'' %> class="w-4 h-4 accent-teal-600" />
+              <span class="text-sm font-semibold text-navy-800">Open to remote work</span>
+            </label>
+          </div>
+        </div>
+        <button class="btn btn-primary">Save profile</button>
+      </form>
+    </div>
+  </div>
+</section>

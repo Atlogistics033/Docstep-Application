@@ -1,0 +1,51 @@
+<section class="max-w-7xl mx-auto px-4 py-10">
+  <div class="grid lg:grid-cols-[260px_1fr] gap-6">
+    <%- include('../partials/employer-side') %>
+
+    <div>
+      <h1 class="font-display font-extrabold text-3xl text-navy-800 mb-2">Applications</h1>
+      <p class="text-slate-600 mb-6">Manage every candidate who applied to your roles.</p>
+
+      <div class="card overflow-hidden">
+        <% if (apps.length === 0) { %>
+          <div class="p-8 text-center text-slate-500">No applications yet.</div>
+        <% } else { %>
+          <table class="w-full text-sm">
+            <thead class="bg-slate-50 text-slate-500 text-xs uppercase tracking-wider">
+              <tr>
+                <th class="p-4 text-left">Candidate</th>
+                <th class="p-4 text-left">Role</th>
+                <th class="p-4">Applied</th>
+                <th class="p-4">Status</th>
+                <th class="p-4 text-right">Update</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <% apps.forEach(a => { %>
+                <tr>
+                  <td class="p-4">
+                    <a href="/employer/candidates/<%= a.doctor_profile_id %>" class="font-semibold text-navy-800 hover:text-teal-700"><%= a.doctor_name %></a>
+                    <div class="text-xs text-slate-500"><%= a.specialty %> • <%= a.experience_years %> yrs</div>
+                  </td>
+                  <td class="p-4 text-slate-700"><%= a.job_title %></td>
+                  <td class="p-4 text-xs text-slate-500"><%= new Date(a.applied_at).toDateString() %></td>
+                  <td class="p-4"><span class="badge <%= a.status==='shortlisted'||a.status==='interviewed'?'badge-teal':a.status==='hired'?'badge-green':a.status==='rejected'?'badge-red':'badge-gray' %>"><%= a.status %></span></td>
+                  <td class="p-4 text-right">
+                    <form method="post" action="/employer/applications/<%= a.id %>/status" class="inline-flex items-center gap-2">
+                      <select name="status" class="select text-xs py-1">
+                        <% ['pending','shortlisted','interviewed','hired','rejected'].forEach(s => { %>
+                          <option value="<%= s %>" <%= a.status===s?'selected':'' %>><%= s %></option>
+                        <% }) %>
+                      </select>
+                      <button class="btn btn-primary text-xs py-1">Save</button>
+                    </form>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</section>

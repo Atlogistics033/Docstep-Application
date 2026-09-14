@@ -1,0 +1,58 @@
+<section class="max-w-7xl mx-auto px-4 py-10">
+  <div class="grid lg:grid-cols-[260px_1fr] gap-6">
+    <%- include('../partials/employer-side') %>
+
+    <div>
+      <h1 class="font-display font-extrabold text-3xl text-navy-800 mb-2">Interviews</h1>
+      <p class="text-slate-600 mb-6">Schedule and manage interviews with candidates.</p>
+
+      <div class="grid lg:grid-cols-[1fr_380px] gap-6">
+        <div class="card card-pad">
+          <h2 class="font-display font-bold text-lg text-navy-800 mb-4">Scheduled</h2>
+          <% if (interviews.length === 0) { %>
+            <div class="text-sm text-slate-500">No interviews scheduled yet.</div>
+          <% } else { %>
+            <div class="divide-y divide-slate-100">
+              <% interviews.forEach(i => { %>
+                <div class="py-3">
+                  <div class="font-semibold text-navy-800"><%= i.doctor_name %> — <%= i.job_title %></div>
+                  <div class="text-xs text-slate-500"><%= new Date(i.scheduled_at).toLocaleString() %> • <%= i.mode %> • <%= i.location || '—' %></div>
+                  <% if (i.notes) { %><div class="text-xs text-slate-500 italic mt-1">"<%= i.notes %>"</div><% } %>
+                </div>
+              <% }) %>
+            </div>
+          <% } %>
+        </div>
+
+        <div class="card card-pad">
+          <h2 class="font-display font-bold text-lg text-navy-800 mb-4">Schedule new</h2>
+          <% if (pendingApps.length === 0) { %>
+            <div class="text-sm text-slate-500">No pending or shortlisted candidates to schedule.</div>
+          <% } else { %>
+            <form method="post" action="/employer/interviews/new" class="space-y-3">
+              <div>
+                <label class="label">Candidate</label>
+                <select name="application_id" class="select" required>
+                  <% pendingApps.forEach(p => { %><option value="<%= p.id %>"><%= p.full_name %> — <%= p.title %></option><% }) %>
+                </select>
+              </div>
+              <div>
+                <label class="label">Date & time</label>
+                <input type="datetime-local" name="scheduled_at" class="input" required />
+              </div>
+              <div>
+                <label class="label">Mode</label>
+                <select name="mode" class="select">
+                  <option>Video</option><option>Phone</option><option>In-person</option>
+                </select>
+              </div>
+              <div><label class="label">Location / link</label><input name="location" class="input" placeholder="Zoom link or address" /></div>
+              <div><label class="label">Notes</label><textarea name="notes" rows="3" class="textarea"></textarea></div>
+              <button class="btn btn-primary w-full justify-center">Schedule interview</button>
+            </form>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
