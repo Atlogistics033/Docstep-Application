@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "660206687276",
+    "project_id": "docstep-f9cfe",
+    "storage_bucket": "docstep-f9cfe.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660206687276:android:021a6ce974d6cd3d81ad89",
+        "android_client_info": {
+          "package_name": "pk.docstep.docstep_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660206687276-dokg2ibbdoeml91gt5ihecvc7reci9di.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "pk.docstep.docstep_mobile",
+            "certificate_hash": "fdc746c1f120ce3d45bb5b8062817a0f5d071d33"
+          }
+        },
+        {
+          "client_id": "660206687276-4pgq55qrjrlbesp30tmk3dlbcsla63a6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8AtlwbHYks7LoQj9h8XAydh1ufawIEpg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660206687276-4pgq55qrjrlbesp30tmk3dlbcsla63a6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "660206687276-fdn8354fj1d6r2hidvsen7de914efn1l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "pk.docstep.docstepMobile"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
